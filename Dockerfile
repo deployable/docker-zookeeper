@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-ARG ZK_MIRROR=http://apache.mirror.digitalpacific.com.au
+ARG ZK_MIRROR=http://mirror.cogentco.com/pub/apache
 ARG ZK_VERSION=3.4.9
 ENV ZK_VERSION $ZK_VERSION
 ARG ZK_SHA1=0285717bf5ea87a7a36936bf37851d214a32bb99
@@ -14,7 +14,7 @@ RUN set -uex; \
     apk add --no-cache bash curl; \
     curl $ZK_MIRROR/zookeeper/$ZK_label/$ZK_file > /tmp/$ZK_file; \
     shasum=$(sha1sum /tmp/$ZK_file | awk '{print $1}'); \
-    [ "$shasum" == "$ZK_SHA1" ] || exit 1; \
+    [ -n "$shasum" ] && [ "$shasum" == "$ZK_SHA1" ] || exit 1; \
     tar -C /tmp -xvzf /tmp/$ZK_file; \
     rm /tmp/$ZK_file; \
     mv /tmp/$ZK_label /zookeeper; \
@@ -27,12 +27,13 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 
 LABEL name="deployable/zookeeper" \
-      version=$ZK_VERSION
-
-EXPOSE 2181 2888 3888
-WORKDIR /zookeeper
+      maintainer="Matt Hoyle" \
+      version=$ZK_VERSION 
+       
 VOLUME ["/zookeeper/conf", "/tmp/zookeeper"]
 
+WORKDIR /zookeeper
+EXPOSE 2181 2888 3888
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/zookeeper/bin/zkServer.sh", "start-foreground"]
 
