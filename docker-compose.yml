@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-  zoo:
+  zookeeper:
     image: deployable/zookeeper
     restart: always
     ports:

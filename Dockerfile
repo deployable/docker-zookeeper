@@ -2,8 +2,11 @@ FROM openjdk:8-jre-alpine
 
 ARG ZK_MIRROR=http://apache.mirror.digitalpacific.com.au
 ARG ZK_VERSION=3.4.9
+ENV ZK_VERSION $ZK_VERSION
 ARG ZK_SHA1=0285717bf5ea87a7a36936bf37851d214a32bb99
 ARG ZK_BASE=/zookeeper
+ARG ZK_DATA=/tmp/zookeeper
+ENV ZK_DATA $ZK_DATA
 
 RUN set -uex; \
     ZK_label="zookeeper-$ZK_VERSION"; \
