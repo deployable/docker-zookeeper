@@ -1,7 +1,7 @@
 # Zookeeper + Cluster in Docker
 
 Auto build of the image availale on https://hub.docker.com/r/deployable/zookeper
-Dockerfile and single and cluster compose files on https://github.com/deployable/docker-zookeeper
+Dockerfile and compose definitions for single node and cluster  https://github.com/deployable/docker-zookeeper
 
 ## Start an instance
 
