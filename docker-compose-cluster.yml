@@ -1,0 +1,76 @@
+version: "2"
+
+services:
+
+  zookeeper1:
+    image: deployable/zookeeper
+    ports:
+      - '2181:2181/tcp'
+    environment:
+      ZK_MYID: 1
+    networks:
+     zoo:
+       ipv4_address: 172.16.242.11
+    volumes:
+     - './conf-cluster:/zookeeper/conf:ro'
+     
+
+  zookeeper2:
+    image: deployable/zookeeper
+    ports:
+      - '2281:2181/tcp'
+    environment:
+      ZK_MYID: 2
+    networks:
+     zoo:
+       ipv4_address: 172.16.242.21
+    volumes:
+     - './conf-cluster:/zookeeper/conf:ro'
+
+  zookeeper3:
+    image: deployable/zookeeper
+    ports:
+      - '2381:2181/tcp'
+    environment:
+      ZK_MYID: 3
+    networks:
+     zoo:
+       ipv4_address: 172.16.242.31
+    volumes:
+     - './conf-cluster:/zookeeper/conf:ro'
+
+#  zookeeper4:
+#    image: deployable/zookeeper
+#    ports:
+#      - '2481:2181/tcp'
+#    environment:
+#      ZK_MYID: 4
+#    networks:
+#     zoo:
+#       ipv4_address: 172.16.242.41
+#    volumes:
+#     - './conf-cluster:/zookeeper/conf:ro'
+
+#  zookeeper5:
+#    image: deployable/zookeeper
+#    ports:
+#      - '2581:2181/tcp'
+#    environment:
+#      ZK_MYID: 5
+#    networks:
+#     zoo:
+#       ipv4_address: 172.16.242.51
+#    volumes:
+#     - './conf-cluster:/zookeeper/conf:ro'
+
+networks:
+  zoo:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 172.16.242.0/24
+         gateway: 172.16.242.1
+
+  
+

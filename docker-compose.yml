@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  zoo:
+    image: deployable/zookeeper
+    restart: always
+    ports:
+      - 2181
+    networks:
+     - zoo
+
+networks:
+  zoo:
+    driver: bridge
+  
+
