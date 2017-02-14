@@ -1,6 +1,9 @@
-# Zookeeper + Cluster in Docker
+# ZooKeeper in Docker
+
+A ZooKeeper image and compose definitions for single node and a cluster
 
 Auto build of the image availale on https://hub.docker.com/r/deployable/zookeper
+
 Dockerfile and compose definitions for single node and cluster  https://github.com/deployable/docker-zookeeper
 
 ## Run a zookeeper instance
@@ -19,7 +22,7 @@ docker-compose -f docker-compose-cluster.yml up
 
 docker build -t deployable/docker .
 
-## About
+### About
 
 Matt Hoyle 
 
