@@ -28,7 +28,7 @@ RUN chmod 755 /entrypoint.sh
 
 LABEL name="deployable/zookeeper" \
       maintainer="Matt Hoyle" \
-      version=3.4.9-1 
+      version=3.4.9-2
        
 VOLUME ["/zookeeper/conf", "/tmp/zookeeper"]
 
