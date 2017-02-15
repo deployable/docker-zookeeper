@@ -3,6 +3,7 @@ version: "2.1"
 services:
 
   zookeeper:
+    hostname: zookeeper
     image: deployable/zookeeper
     restart: always
     ports:
@@ -22,7 +23,13 @@ services:
   zookeeper_wait:
     image: deployable/zookeeper
     depends_on:
-      - zookeeper
+      zookeeper:
+        condition: service_healthy        
+    networks:
+     - zoo
+    environment:
+      PORT: 2181
+      HOST: zookeeper
     command: [ "/zookeeper/check.sh", "zookeeper" ]
     
 networks:

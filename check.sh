@@ -4,7 +4,8 @@ set -uex
 
 if [ "$1" == "kafka" ]; then 
   PORT=${PORT:-9092}
-  res=$(echo ruok | nc localhost $PORT)
+  HOST=${HOST:-localhost}
+  res=$(echo ruok | nc $HOST $PORT)
   rc=$?
   if [ "$rc" == "0" ]; then 
     res="imok"
@@ -13,7 +14,8 @@ fi
 
 if [ "$1" == "zookeeper" ]; then
   PORT=${PORT:-2181}
-  res=$(echo ruok | nc localhost $PORT)
+  HOST=${HOST:-localhost}
+  res=$(echo ruok | nc $HOST $PORT)
   rc=$?
 fi
 
