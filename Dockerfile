@@ -24,8 +24,8 @@ RUN set -uex; \
     mkdir -p /zookeeper/var;
 
 COPY docker-entrypoint.sh /entrypoint.sh
-COPY check.sh /zookeeper
-RUN chmod 755 /entrypoint.sh /zookeeper/check.sh
+COPY check.sh wait.sh /zookeeper/
+RUN chmod 755 /entrypoint.sh /zookeeper/check.sh /zookeeper/wait.sh
 
 LABEL name="deployable/zookeeper" \
       maintainer="Matt Hoyle" \
