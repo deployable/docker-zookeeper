@@ -10,19 +10,27 @@ Dockerfile and compose definitions for single node and cluster  https://github.c
 
 ### Run a zookeeper instance
 
-    docker run -p 2181:2181 deployable/zookeeper
+```
+docker run -p 2181:2181 deployable/zookeeper
+```
 
 ### Start an compose instance
 
-    docker-compose up 
+```
+docker-compose up 
+```
 
 ### Start a 3 node cluster
 
-    docker-compose -f docker-compose-cluster.yml up
+```
+docker-compose -f docker-compose-cluster.yml up
+```
 
 ### Build the Zookeeper image
 
-    docker build -t you/docker .
+```
+docker build -t you/docker .
+```
 
 ### About
 
