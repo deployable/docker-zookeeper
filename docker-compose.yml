@@ -1,6 +1,7 @@
-version: "2"
+version: "2.1"
 
 services:
+
   zookeeper:
     image: deployable/zookeeper
     restart: always
@@ -8,9 +9,23 @@ services:
       - 2181
     networks:
      - zoo
+    healthcheck:
+      test: ["CMD", "/zookeeper/check.sh", "zookeeper" ]
+      interval: 15s
+      timeout: 5s
+      retries: 3
 
+# This is a little bit of a hack to make `up` and `start` not
+# return to the shell until `zookeeper` is healthy. So test's
+# don't start early
+
+  zookeeper_wait:
+    image: deployable/zookeeper
+    depends_on:
+      - zookeeper
+    command: [ "/zookeeper/check.sh", "zookeeper" ]
+    
 networks:
   zoo:
     driver: bridge
   
-

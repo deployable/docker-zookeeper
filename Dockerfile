@@ -11,7 +11,7 @@ ENV ZK_DATA $ZK_DATA
 RUN set -uex; \
     ZK_label="zookeeper-$ZK_VERSION"; \
     ZK_file="${ZK_label}.tar.gz"; \
-    apk add --no-cache bash curl; \
+    apk add --no-cache bash curl netcat-openbsd; \
     curl $ZK_MIRROR/zookeeper/$ZK_label/$ZK_file > /tmp/$ZK_file; \
     shasum=$(sha1sum /tmp/$ZK_file | awk '{print $1}'); \
     [ -n "$shasum" ] && [ "$shasum" == "$ZK_SHA1" ] || exit 1; \
@@ -24,7 +24,8 @@ RUN set -uex; \
     mkdir -p /zookeeper/var;
 
 COPY docker-entrypoint.sh /entrypoint.sh
-RUN chmod 755 /entrypoint.sh
+COPY check.sh /zookeeper
+RUN chmod 755 /entrypoint.sh /zookeeper/check.sh
 
 LABEL name="deployable/zookeeper" \
       maintainer="Matt Hoyle" \
