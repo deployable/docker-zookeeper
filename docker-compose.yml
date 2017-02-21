@@ -17,8 +17,8 @@ services:
       retries: 3
 
 # This is a little bit of a hack to make `up` and `start` not
-# return to the shell until `zookeeper` is healthy. So test's
-# don't start early
+# return to the shell until `zookeeper` is healthy. So anything relying
+# on up can wait until "ready"
 
   zookeeper_wait:
     image: deployable/zookeeper
