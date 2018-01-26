@@ -2,7 +2,7 @@
 
 A ZooKeeper image and compose definitions for single node and a cluster
 
-Auto build of the image availale on https://hub.docker.com/r/deployable/zookeeper
+Image available on the Docker registrsy as [`deployable/zookeeper`](https://hub.docker.com/r/deployable/zookeeper)
 
 Dockerfile and compose definitions for single node and cluster  https://github.com/deployable/docker-zookeeper
 
